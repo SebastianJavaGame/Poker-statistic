@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sebastian.scislak.pokerstatistics.MainMenu"
+    android:orientation="vertical"
+    android:background="@color/colorSeparator"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_gravity="center"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="70dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_first_option"
+        android:onClick="OpenWriteStatistics"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_second_option"
+        android:onClick="OpenShowStatistics"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_third_option"
+        android:onClick="OpenPokerTips"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_fourth_option"
+        android:onClick="Exit"/>
+
+</LinearLayout>

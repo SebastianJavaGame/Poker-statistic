@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Poker statistics</string>
+    <string name="menu_first_option">Enter data</string>
+    <string name="menu_second_option">Shows statistics</string>
+    <string name="menu_third_option">Poker tips</string>
+    <string name="menu_fourth_option">Exit</string>
+</resources>
