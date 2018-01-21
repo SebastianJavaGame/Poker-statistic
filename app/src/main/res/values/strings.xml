@@ -4,4 +4,9 @@
     <string name="menu_second_option">Shows statistics</string>
     <string name="menu_third_option">Poker tips</string>
     <string name="menu_fourth_option">Exit</string>
+    <string name="header_activity_save_data">Save information of the session</string>
+    <string name="button_activity_save_data">Pre-saving</string>
+    <string name="activity_save_data_option_0">Account balance before the session</string>
+    <string name="activity_save_data_option_1">Session start time</string>
+    <string name="activity_save_data_option_2">The maximum number of players at the table</string>
 </resources>
