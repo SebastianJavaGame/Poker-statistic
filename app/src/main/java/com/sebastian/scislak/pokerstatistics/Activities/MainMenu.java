@@ -1,10 +1,12 @@
-package com.sebastian.scislak.pokerstatistics;
+package com.sebastian.scislak.pokerstatistics.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import com.sebastian.scislak.pokerstatistics.R;
 
 public class MainMenu extends AppCompatActivity {
 

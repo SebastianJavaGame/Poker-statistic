@@ -1,8 +1,10 @@
-package com.sebastian.scislak.pokerstatistics;
+package com.sebastian.scislak.pokerstatistics.Activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.sebastian.scislak.pokerstatistics.R;
 
 /**
  * Created by User on 2018-01-21.

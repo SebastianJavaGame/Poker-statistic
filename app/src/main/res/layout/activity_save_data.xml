@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sebastian.scislak.pokerstatistics.SaveData"
+    tools:context="com.sebastian.scislak.pokerstatistics.Activities.SaveData"
     android:orientation="vertical"
     android:weightSum="12">
 
@@ -71,20 +71,29 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingTop="5dp"
-                android:paddingLeft="90dp"
-                android:paddingRight="60dp">
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="15dp">
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="6 Player"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textSize="16dp"/>
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9 Player"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:textSize="16dp"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="10 Player"
+                    android:layout_weight="1"
+                    android:textSize="16dp"/>
             </RadioGroup>
 
         </LinearLayout>

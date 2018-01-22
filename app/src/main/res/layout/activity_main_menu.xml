@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sebastian.scislak.pokerstatistics.MainMenu"
+    tools:context="com.sebastian.scislak.pokerstatistics.Activities.MainMenu"
     android:orientation="vertical"
     android:background="@color/colorSeparator"
     android:paddingLeft="18dp"
