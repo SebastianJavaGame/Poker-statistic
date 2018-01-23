@@ -9,13 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Activities.MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
+        <activity
+            android:name=".Activities.SaveData"
+            android:parentActivityName=".Activities.MainMenu">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainMenu"/>
+        </activity>
+
+        <activity
+            android:name=".Activities.ShowData"
+            android:parentActivityName=".Activities.MainMenu">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainMenu"/>
+        </activity>
+
+    </application>
 </manifest>

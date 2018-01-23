@@ -32,20 +32,18 @@ public class SaveData extends AppCompatActivity{
         accountBalanceEdit = findViewById(R.id.balance_before);
         timeEdit = findViewById(R.id.time_before);
 
-        accountBalanceEdit.addTextChangedListener(new TextWatcher() {
+        accountBalanceEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    accountBalance = Float.valueOf(accountBalanceEdit.getText().toString());
+                    accountBalanceEdit.setText(accountBalance + "$");
+                }else{
+                    if(accountBalance != 0f)
+                        accountBalanceEdit.setText(String.valueOf(accountBalance));
+                    else
+                        accountBalanceEdit.setText("");
+                }
             }
         });
 
@@ -56,13 +54,12 @@ public class SaveData extends AppCompatActivity{
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                if(editable.length() == 2) //TODO add boolean when be separator
+                    timeEdit.setText(timeEdit.getText() + ":");
             }
         });
     }

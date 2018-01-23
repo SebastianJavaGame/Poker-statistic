@@ -2,14 +2,12 @@ package com.sebastian.scislak.pokerstatistics.ScriptsClass;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
-import java.util.ArrayList;
 
 /**
  * Created by User on 2018-01-23.
  */
 
-public class SharedPreferenceManager extends AppCompatActivity{
+public class SharedPreferenceManager{
     private static final String PREF = "PREF";
     private static final String ITERATOR = "ITERATOR";
     public static final String ACCOUNT_NAME = "ACCOUNT";
