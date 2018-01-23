@@ -37,6 +37,7 @@
                 android:paddingTop="12dp"/>
 
             <EditText
+                android:id="@+id/balance_before"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
@@ -52,6 +53,7 @@
                 android:paddingTop="12dp"/>
 
             <EditText
+                android:id="@+id/time_before"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
@@ -75,25 +77,31 @@
                 android:layout_marginRight="15dp">
 
                 <RadioButton
+                    android:id="@+id/sixSeat"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="6 Player"
                     android:layout_weight="1"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:onClick="CountPlayers"/>
 
                 <RadioButton
+                    android:id="@+id/nineSeat"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="9 Player"
                     android:layout_weight="1"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:onClick="CountPlayers"/>
 
                 <RadioButton
+                    android:id="@+id/tenSeat"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="10 Player"
                     android:layout_weight="1"
-                    android:textSize="16dp"/>
+                    android:textSize="16dp"
+                    android:onClick="CountPlayers"/>
             </RadioGroup>
 
         </LinearLayout>
