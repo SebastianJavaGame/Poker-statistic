@@ -1,13 +1,20 @@
 package com.sebastian.scislak.pokerstatistics.Activities;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.sebastian.scislak.pokerstatistics.R;
+import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
 /**
  * Created by User on 2018-01-21.
@@ -17,6 +24,10 @@ public class SaveData extends AppCompatActivity{
     private float accountBalance;
     private int countMinutes;
     private int seatAtTheTable;
+    private String idTable;
+
+    private int hours;
+    private int minute;
 
     private EditText accountBalanceEdit;
     private EditText timeEdit;
@@ -38,31 +49,36 @@ public class SaveData extends AppCompatActivity{
                 if (!hasFocus) {
                     accountBalance = Float.valueOf(accountBalanceEdit.getText().toString());
                     accountBalanceEdit.setText(accountBalance + "$");
-                }else{
-                    if(accountBalance != 0f)
-                        accountBalanceEdit.setText(String.valueOf(accountBalance));
-                    else
-                        accountBalanceEdit.setText("");
-                }
+                }else
+                    accountBalanceEdit.setText("");
             }
         });
 
-        timeEdit.addTextChangedListener(new TextWatcher() {
+        timeEdit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(editable.length() == 2) //TODO add boolean when be separator
-                    timeEdit.setText(timeEdit.getText() + ":");
+            public void onClick(View view) {
+                showDialog(0);
             }
         });
     }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if(id == 0)
+            return new TimePickerDialog(SaveData.this, timePickerListener, hours, minute, true);
+        return null;
+    }
+
+    protected TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener(){
+        @Override
+        public void onTimeSet(TimePicker timePicker, int i, int i1) {
+            hours = i;
+            minute = i1;
+            countMinutes = hours *60 + minute;
+            timeEdit.setText(hours + ":" + minute);
+            Toast.makeText(SaveData.this, "Last the session: " + countMinutes, Toast.LENGTH_SHORT).show();
+        }
+    };
 
     public void CountPlayers(View view) {
         switch (view.getId()){
@@ -84,5 +100,7 @@ public class SaveData extends AppCompatActivity{
     }
 
     public void PreSaving(View view) {
+        SharedPreferenceManager preferenceManager = new SharedPreferenceManager(SaveData.this);
+        preferenceManager.AddTable(idTable, accountBalance, countMinutes, seatAtTheTable);
     }
 }
