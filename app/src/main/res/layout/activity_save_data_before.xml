@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sebastian.scislak.pokerstatistics.Activities.SaveData"
+    tools:context="com.sebastian.scislak.pokerstatistics.Activities.SaveDataBefore"
     android:orientation="vertical"
     android:weightSum="15">
 
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:layout_gravity="center"
-                android:text="#id"
+                android:text="@string/activity_save_data_default_0"
                 android:inputType="number"/>
 
             <TextView
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:layout_gravity="center"
-                android:text="0.00$"
+                android:text="@string/activity_save_data_default_1"
                 android:inputType="numberDecimal"/>
 
             <TextView
@@ -76,8 +76,25 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:layout_gravity="center"
-                android:text="HH:MM"
+                android:text="@string/activity_save_data_default_2"
                 android:inputType="datetime"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_data_option_3"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:paddingTop="12dp"/>
+
+            <EditText
+                android:id="@+id/count_tables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
+                android:text="@string/activity_save_data_default_3"
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -102,7 +119,8 @@
                     android:text="6 Player"
                     android:layout_weight="1"
                     android:textSize="16dp"
-                    android:onClick="CountPlayers"/>
+                    android:onClick="CountPlayers"
+                    android:focusedByDefault="false"/>
 
                 <RadioButton
                     android:id="@+id/nineSeat"
@@ -111,7 +129,8 @@
                     android:text="9 Player"
                     android:layout_weight="1"
                     android:textSize="16dp"
-                    android:onClick="CountPlayers"/>
+                    android:onClick="CountPlayers"
+                    android:focusedByDefault="true"/>
 
                 <RadioButton
                     android:id="@+id/tenSeat"
@@ -120,7 +139,8 @@
                     android:text="10 Player"
                     android:layout_weight="1"
                     android:textSize="16dp"
-                    android:onClick="CountPlayers"/>
+                    android:onClick="CountPlayers"
+                    android:focusedByDefault="false"/>
             </RadioGroup>
 
         </LinearLayout>

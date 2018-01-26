@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sebastian.scislak.pokerstatistics.R;
+import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -17,7 +18,10 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void OpenWriteStatistics(View view) {
-        startActivity(new Intent(this, SaveData.class));
+        if(new SharedPreferenceManager(this).getTableName().equals(""))
+            startActivity(new Intent(this, SaveDataBefore.class));
+        else
+            startActivity(new Intent(this, SaveDataAfter.class));
     }
 
     public void OpenShowStatistics(View view) {

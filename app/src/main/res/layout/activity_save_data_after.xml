@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sebastian.scislak.pokerstatistics.Activities.SaveDataAfter"
+    android:orientation="vertical"
+    android:weightSum="15">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/header_activity_save_data_after"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_weight="1"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_weight="14">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_id_table"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:paddingTop="12dp"/>
+
+            <EditText
+                android:id="@+id/id_table"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
+                android:text="@string/activity_save_data_default_0"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_data_option_0"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:paddingTop="12dp"/>
+
+            <EditText
+                android:id="@+id/balance_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
+                android:text="@string/activity_save_data_default_1"
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_data_option_1"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:paddingTop="12dp"/>
+
+            <EditText
+                android:id="@+id/time_before"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
+                android:text="@string/activity_save_data_default_2"
+                android:inputType="datetime"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_data_option_3"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:paddingTop="12dp"/>
+
+            <EditText
+                android:id="@+id/count_tables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_gravity="center"
+                android:text="@string/activity_save_data_default_3"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_data_option_2"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:paddingTop="12dp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="15dp">
+
+                <RadioButton
+                    android:id="@+id/sixSeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/nineSeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="9 Player"
+                    android:layout_weight="1"
+                    android:textSize="16dp" />
+
+                <RadioButton
+                    android:id="@+id/tenSeat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="10 Player"
+                    android:layout_weight="1"
+                    android:textSize="16dp" />
+            </RadioGroup>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:text="@string/button_activity_save_data_after"
+            android:textSize="18dp"
+            android:onClick="Saving"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:src="@drawable/info"
+            android:onClick="SavingInfo" />
+    </LinearLayout>
+</LinearLayout>

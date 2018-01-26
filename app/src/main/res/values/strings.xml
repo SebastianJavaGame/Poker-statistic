@@ -1,13 +1,33 @@
 <resources>
+    //Application
+
     <string name="app_name">Poker statistics</string>
+
+    //Main menu
+
     <string name="menu_first_option">Enter data</string>
     <string name="menu_second_option">Shows statistics</string>
     <string name="menu_third_option">Poker tips</string>
     <string name="menu_fourth_option">Exit</string>
-    <string name="header_activity_save_data">Save information of the session</string>
-    <string name="button_activity_save_data">Pre-saving</string>
-    <string name="activity_save_id_table">Id table</string>
+
+    //Before
+
+    <string name="header_activity_save_data">Initially saving information of the session</string>
+    <string name="button_activity_save_data">Saving</string>
+    <string name="activity_save_id_table">The session name</string>
+
     <string name="activity_save_data_option_0">Account balance before the session</string>
     <string name="activity_save_data_option_1">Session start time</string>
     <string name="activity_save_data_option_2">The maximum number of players at the table</string>
+    <string name="activity_save_data_option_3">Count tables in the session</string>
+
+    <string name="activity_save_data_default_0">MySession</string>
+    <string name="activity_save_data_default_1">50.00$</string>
+    <string name="activity_save_data_default_2">hh:mm</string>
+    <string name="activity_save_data_default_3">1</string>
+
+    //After
+
+    <string name="header_activity_save_data_after">Complete saving information of the session</string>
+    <string name="button_activity_save_data_after">Saving</string>
 </resources>

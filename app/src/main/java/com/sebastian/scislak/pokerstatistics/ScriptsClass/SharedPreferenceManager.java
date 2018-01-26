@@ -12,62 +12,86 @@ import java.util.HashMap;
 
 public class SharedPreferenceManager{
     private static final String PREF = "PREF";
-    private static final String ITERATOR = "ITERATOR";
-    public static final String ID_TABLE = "ID_TABLE";
+    //private static final String ITERATOR = "ITERATOR";
+    public static final String NAME_TABLE = "NAME_TABLE";
     public static final String ACCOUNT_NAME = "ACCOUNT";
     public static final String TIME_NAME = "TIME";
     public static final String SEAT_NAME = "SEAT";
+    public static final String TABLES_NAME = "SEAT";
     private static int MAX_COUNT_OPENED_TABLES = 10;
 
-    private static int iterator;
+    private static final int ITERATOR_ID = 0;
 
     private SharedPreferences mainPref;
-    private Context context;
 
     public SharedPreferenceManager(Context context){
-        this.context = context;
         mainPref = context.getSharedPreferences(PREF, 0);
-        iterator = mainPref.getInt(ITERATOR, 0);
+        //iterator = mainPref.getInt(ITERATOR, 0);
     }
 
-    public void AddTable(String idTable, float balanceAccount, int timeForMinutes, int countSeat){
-        if(iterator < MAX_COUNT_OPENED_TABLES
-                ) {
-            mainPref.edit().putString(iterator + ID_TABLE, "#ID:" + idTable);
-            mainPref.edit().putFloat(iterator + ACCOUNT_NAME, balanceAccount);
-            mainPref.edit().putInt(iterator + TIME_NAME, timeForMinutes);
-            mainPref.edit().putInt(iterator + SEAT_NAME, countSeat);
+    public void AddTable(String idTable, float balanceAccount, int timeForMinutes, int countSeat, int countTables){
+        if(ITERATOR_ID < MAX_COUNT_OPENED_TABLES) {
+            mainPref.edit().putString(ITERATOR_ID + NAME_TABLE, idTable);
+            mainPref.edit().putFloat(ITERATOR_ID + ACCOUNT_NAME, balanceAccount);
+            mainPref.edit().putInt(ITERATOR_ID + TIME_NAME, timeForMinutes);
+            mainPref.edit().putInt(ITERATOR_ID + SEAT_NAME, countSeat);
+            mainPref.edit().putInt(ITERATOR_ID + TABLES_NAME, countTables);
             mainPref.edit().apply();
-
+        }
+            /*
             do {
                 iterator++;
             } while (!mainPref.getString(iterator + ID_TABLE, "").equals(""));
+
         }else
             Toast.makeText(context, "Dicrease count opened the tables", Toast.LENGTH_SHORT).show();
+            */
     }
 
-    public String getTableId(int idIterator){
-        return mainPref.getString(idIterator + ID_TABLE, null);
+    public String getTableName(){
+        return mainPref.getString(ITERATOR_ID + NAME_TABLE, "");
     }
 
-    public float getAccountBalance(String idIterator){
-        return mainPref.getFloat(idIterator + ACCOUNT_NAME, 0f);
+    public float getAccountBalance(){
+        return mainPref.getFloat(ITERATOR_ID + ACCOUNT_NAME, 0);
     }
 
-    public int getTimeSession(String idIterator){
-        return  mainPref.getInt(idIterator + TIME_NAME, 0);
+    public int getTimeSession(){
+        return  mainPref.getInt(ITERATOR_ID + TIME_NAME, 0);
     }
 
-    public int getCountSeat(int idIterator){
-        return  mainPref.getInt(idIterator + SEAT_NAME, 0);
+    public int getCountSeat(){
+        return  mainPref.getInt(ITERATOR_ID + SEAT_NAME, 9);
+    }
+
+    public int getCountTables(){
+        return mainPref.getInt(ITERATOR_ID + TABLES_NAME, 1);
+    }
+
+    public void deleteSession(int idTournament) throws Exception {
+        String id = String.valueOf(idTournament);
+        for(int i = 0; i < MAX_COUNT_OPENED_TABLES; i++){
+            if(mainPref.getString(i + NAME_TABLE, "").equals(id)){
+                mainPref.edit().remove(i + NAME_TABLE);
+                mainPref.edit().remove(i + ACCOUNT_NAME);
+                mainPref.edit().remove(i + TIME_NAME);
+                mainPref.edit().remove(i + SEAT_NAME);
+                mainPref.edit().apply();
+            }
+        }
+        throw new Exception();
+    }
+
+    public boolean doPrefIsEmpty(){
+        for(int i = 0; i < MAX_COUNT_OPENED_TABLES; i++){
+            if(!mainPref.getString(i + NAME_TABLE, "").equals(""))
+                return false;
+        }
+        return true;
     }
 
     public void ClearPref(){
         mainPref.edit().clear().apply();
-        iterator = 0;
-    }
-
-    public static int getIterator(){
-        return iterator;
+        //iterator = 0;
     }
 }
