@@ -1,33 +1,25 @@
 package com.sebastian.scislak.pokerstatistics.Activities;
 
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.sebastian.scislak.pokerstatistics.R;
+import com.sebastian.scislak.pokerstatistics.ScriptsClass.MyTimePicker;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
 /**
  * Created by User on 2018-01-21.
  */
 
-public class SaveDataBefore extends AppCompatActivity{
+public class SaveDataBefore extends MyTimePicker{
     private float accountBalance;
-    private int countMinutes;
     private int seatAtTheTable;
     private int countTables;
     private String sessionName;
 
-    private int hours;
-    private int minute;
-
     private EditText accountBalanceEdit;
-    private EditText timeEdit;
     private EditText tableNumber;
     private EditText countTablesEdit;
 
@@ -63,7 +55,7 @@ public class SaveDataBefore extends AppCompatActivity{
         timeEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog(0);
+                SaveDataBefore.super.showDialog(0);
             }
         });
 
@@ -85,24 +77,6 @@ public class SaveDataBefore extends AppCompatActivity{
             }
         });
     }
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if(id == 0)
-            return new TimePickerDialog(SaveDataBefore.this, timePickerListener, hours, minute, true);
-        return null;
-    }
-
-    protected TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener(){
-        @Override
-        public void onTimeSet(TimePicker timePicker, int i, int i1) {
-            hours = i;
-            minute = i1;
-            countMinutes = hours *60 + minute;
-            timeEdit.setText(hours + ":" + minute);
-            Toast.makeText(SaveDataBefore.this, "Length of the session: " + countMinutes + " minutes", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     public void CountPlayers(View view) {
         switch (view.getId()){
@@ -133,10 +107,11 @@ public class SaveDataBefore extends AppCompatActivity{
 
     public void PreSaving(View view) {
         if(!checkToFieldsIsEmpty()) {
-            if(sessionName.length() < 5)
+            if(sessionName.toString().length() < 5)
                 Toast.makeText(this, "Name or ID tournament is too short. Min 5 chars", Toast.LENGTH_LONG).show();
             else {
-                new SharedPreferenceManager(SaveDataBefore.this).AddTable(sessionName, accountBalance, countMinutes, seatAtTheTable, countTables);
+                new SharedPreferenceManager(SaveDataBefore.this).AddTable(sessionName, accountBalance, super.getCountMinutes(), seatAtTheTable, countTables);
+                Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();
             }
         }
     }

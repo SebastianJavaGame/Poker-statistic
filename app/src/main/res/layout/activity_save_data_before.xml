@@ -42,8 +42,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:layout_gravity="center"
-                android:text="@string/activity_save_data_default_0"
-                android:inputType="number"/>
+                android:text="@string/activity_save_data_default_0" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -119,8 +118,7 @@
                     android:text="6 Player"
                     android:layout_weight="1"
                     android:textSize="16dp"
-                    android:onClick="CountPlayers"
-                    android:focusedByDefault="false"/>
+                    android:onClick="CountPlayers" />
 
                 <RadioButton
                     android:id="@+id/nineSeat"
@@ -130,7 +128,7 @@
                     android:layout_weight="1"
                     android:textSize="16dp"
                     android:onClick="CountPlayers"
-                    android:focusedByDefault="true"/>
+                    android:checked="true"/>
 
                 <RadioButton
                     android:id="@+id/tenSeat"
@@ -139,8 +137,7 @@
                     android:text="10 Player"
                     android:layout_weight="1"
                     android:textSize="16dp"
-                    android:onClick="CountPlayers"
-                    android:focusedByDefault="false"/>
+                    android:onClick="CountPlayers" />
             </RadioGroup>
 
         </LinearLayout>

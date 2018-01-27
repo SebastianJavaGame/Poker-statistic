@@ -31,12 +31,11 @@ public class SharedPreferenceManager{
 
     public void AddTable(String idTable, float balanceAccount, int timeForMinutes, int countSeat, int countTables){
         if(ITERATOR_ID < MAX_COUNT_OPENED_TABLES) {
-            mainPref.edit().putString(ITERATOR_ID + NAME_TABLE, idTable);
-            mainPref.edit().putFloat(ITERATOR_ID + ACCOUNT_NAME, balanceAccount);
-            mainPref.edit().putInt(ITERATOR_ID + TIME_NAME, timeForMinutes);
-            mainPref.edit().putInt(ITERATOR_ID + SEAT_NAME, countSeat);
-            mainPref.edit().putInt(ITERATOR_ID + TABLES_NAME, countTables);
-            mainPref.edit().apply();
+            mainPref.edit().putString(ITERATOR_ID + NAME_TABLE, idTable).apply();
+            mainPref.edit().putFloat(ITERATOR_ID + ACCOUNT_NAME, balanceAccount).apply();
+            mainPref.edit().putInt(ITERATOR_ID + TIME_NAME, timeForMinutes).apply();
+            mainPref.edit().putInt(ITERATOR_ID + SEAT_NAME, countSeat).apply();
+            mainPref.edit().putInt(ITERATOR_ID + TABLES_NAME, countTables).apply();
         }
             /*
             do {
@@ -72,11 +71,10 @@ public class SharedPreferenceManager{
         String id = String.valueOf(idTournament);
         for(int i = 0; i < MAX_COUNT_OPENED_TABLES; i++){
             if(mainPref.getString(i + NAME_TABLE, "").equals(id)){
-                mainPref.edit().remove(i + NAME_TABLE);
-                mainPref.edit().remove(i + ACCOUNT_NAME);
-                mainPref.edit().remove(i + TIME_NAME);
-                mainPref.edit().remove(i + SEAT_NAME);
-                mainPref.edit().apply();
+                mainPref.edit().remove(i + NAME_TABLE).apply();
+                mainPref.edit().remove(i + ACCOUNT_NAME).apply();
+                mainPref.edit().remove(i + TIME_NAME).apply();
+                mainPref.edit().remove(i + SEAT_NAME).apply();
             }
         }
         throw new Exception();

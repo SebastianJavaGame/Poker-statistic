@@ -26,6 +26,14 @@
         </activity>
 
         <activity
+            android:name=".Activities.SaveDataAfter"
+            android:parentActivityName=".Activities.MainMenu">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainMenu"/>
+        </activity>
+
+        <activity
             android:name=".Activities.ShowData"
             android:parentActivityName=".Activities.MainMenu">
 

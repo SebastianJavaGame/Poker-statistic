@@ -30,4 +30,5 @@
 
     <string name="header_activity_save_data_after">Complete saving information of the session</string>
     <string name="button_activity_save_data_after">Saving</string>
+    <string name="activity_save_data_after_header">Fill in another fields</string>
 </resources>

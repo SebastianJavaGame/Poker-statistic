@@ -3,6 +3,7 @@ package com.sebastian.scislak.pokerstatistics.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -18,10 +19,12 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void OpenWriteStatistics(View view) {
-        if(new SharedPreferenceManager(this).getTableName().equals(""))
+        if(new SharedPreferenceManager(this).getTableName().toString().equals(""))
             startActivity(new Intent(this, SaveDataBefore.class));
-        else
+        else {
+            Toast.makeText(this, "Name: " + new SharedPreferenceManager(this).getTableName().toString(), Toast.LENGTH_SHORT).show();;
             startActivity(new Intent(this, SaveDataAfter.class));
+        }
     }
 
     public void OpenShowStatistics(View view) {

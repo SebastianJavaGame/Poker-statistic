@@ -13,8 +13,7 @@
         android:text="@string/header_activity_save_data_after"
         android:gravity="center"
         android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_weight="1"/>
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,14 +35,12 @@
                 android:gravity="center"
                 android:paddingTop="12dp"/>
 
-            <EditText
-                android:id="@+id/id_table"
+            <TextView
+                android:id="@+id/id_table_after"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:layout_gravity="center"
-                android:text="@string/activity_save_data_default_0"
-                android:inputType="number"/>
+                android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -53,14 +50,13 @@
                 android:gravity="center"
                 android:paddingTop="12dp"/>
 
-            <EditText
-                android:id="@+id/balance_before"
+            <TextView
+                android:id="@+id/balance_after"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:layout_gravity="center"
-                android:text="@string/activity_save_data_default_1"
-                android:inputType="numberDecimal"/>
+                android:layout_gravity="center" />
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -70,14 +66,12 @@
                 android:gravity="center"
                 android:paddingTop="12dp"/>
 
-            <EditText
-                android:id="@+id/time_before"
+            <TextView
+                android:id="@+id/time_after"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:layout_gravity="center"
-                android:text="@string/activity_save_data_default_2"
-                android:inputType="datetime"/>
+                android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,14 +81,12 @@
                 android:gravity="center"
                 android:paddingTop="12dp"/>
 
-            <EditText
-                android:id="@+id/count_tables"
+            <TextView
+                android:id="@+id/count_tables_after"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:layout_gravity="center"
-                android:text="@string/activity_save_data_default_3"
-                android:inputType="number"/>
+                android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -104,38 +96,142 @@
                 android:gravity="center"
                 android:paddingTop="12dp"/>
 
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
+            <TextView
+                android:id="@+id/max_player_after"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="15dp">
+                android:layout_gravity="center" />
 
-                <RadioButton
-                    android:id="@+id/sixSeat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textSize="16dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/colorSeparatorSaving"/>
 
-                <RadioButton
-                    android:id="@+id/nineSeat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="9 Player"
-                    android:layout_weight="1"
-                    android:textSize="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_save_data_after_header"
+                android:gravity="center"
+                android:textSize="24dp"
+                android:textStyle="bold"/>
 
-                <RadioButton
-                    android:id="@+id/tenSeat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="10 Player"
-                    android:layout_weight="1"
-                    android:textSize="16dp" />
-            </RadioGroup>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/colorSeparatorSaving"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="The session stop time"/>
+
+            <EditText
+                android:id="@+id/time_edit_after"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="hh:mm"
+                android:paddingTop="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Account balance after the session"/>
+
+            <EditText
+                android:id="@+id/id_account_balance_after"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:inputType="numberDecimal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Played hands"
+                android:inputType="number"/>
+
+            <EditText
+                android:id="@+id/id_played_hands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Going to flop"/>
+
+            <EditText
+                android:id="@+id/id_going_to_flop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Going to flop without blinds"/>
+
+            <EditText
+                android:id="@+id/id_going_to_flop_without_blinds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Winning"/>
+
+            <EditText
+                android:id="@+id/id_winning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Winning without show hands"/>
+
+            <EditText
+                android:id="@+id/id_winning_without_show_hands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:inputType="number"/>
         </LinearLayout>
     </ScrollView>
 
@@ -160,5 +256,13 @@
             android:layout_gravity="right"
             android:src="@drawable/info"
             android:onClick="SavingInfo" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:text="Delete this session"
+            android:textSize="18dp"
+            android:onClick="DeleteSession"/>
     </LinearLayout>
 </LinearLayout>
