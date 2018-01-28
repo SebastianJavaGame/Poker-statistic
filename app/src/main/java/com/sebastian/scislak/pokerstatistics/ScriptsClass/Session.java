@@ -8,12 +8,18 @@ import android.provider.BaseColumns;
 
 public class Session implements BaseColumns{
     //Before the session
-    public static final String TABLE_NAME = "Session";
-    public static final String TABLE_ID = "table_id";
-    public static final String ACCOUNT_BALANCE_BEFORE = "accoutn_balance_before";
-    public static final String LENGHT_OF_THE_SESSION = "lenght_of_the_session";
+    public static final String TABLE_NAME = "session";
+    public static final String SESSION_NAME = "table_id";
+    public static final String ACCOUNT_BALANCE_BEFORE = "account_balance_before";
+    public static final String LENGTH_OF_THE_SESSION = "length_of_the_session";
     public static final String COUNT_MAX_PLAYERS= "count_max_players";
+    public static final String COUNT_TABLES= "count_tables";
 
     //During the end of the session
-    //...
+    public static final String ACCOUNT_BALANCE_AFTER = "account_balance_after";
+    public static final String PLAYED_HANDS = "played_hands";
+    public static final String GOING_TO_FLOP = "going_to_flop";
+    public static final String GOING_TO_FLOP_WITHOUT_BLINDS = "going_to_flop_without_blinds";
+    public static final String WINNING = "winning";
+    public static final String WINNING_WITHOUT_SHOW_HAND = "winning_without_show_hand";
 }

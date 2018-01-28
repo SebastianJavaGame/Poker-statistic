@@ -135,7 +135,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="hh:mm"
-                android:paddingTop="5dp"/>
+                android:paddingTop="5dp"
+                android:inputType="datetime"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -159,15 +160,15 @@
                 android:paddingTop="5dp"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:text="Played hands"
-                android:inputType="number"/>
+                android:text="Played hands" />
 
             <EditText
                 android:id="@+id/id_played_hands"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingTop="5dp"/>
+                android:paddingTop="5dp"
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="match_parent"

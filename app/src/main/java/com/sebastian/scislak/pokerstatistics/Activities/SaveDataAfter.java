@@ -1,7 +1,9 @@
 package com.sebastian.scislak.pokerstatistics.Activities;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,6 +11,8 @@ import android.widget.Toast;
 
 import com.sebastian.scislak.pokerstatistics.R;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.MyTimePicker;
+import com.sebastian.scislak.pokerstatistics.ScriptsClass.Session;
+import com.sebastian.scislak.pokerstatistics.ScriptsClass.SessionDB;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
 /**
@@ -17,6 +21,7 @@ import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManage
 
 public class SaveDataAfter extends MyTimePicker {
     private SharedPreferenceManager preferenceManager;
+    private SessionDB sessionDB;
 
     private EditText accountBalance;
     private EditText playedHands;
@@ -34,6 +39,7 @@ public class SaveDataAfter extends MyTimePicker {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_data_after);
+        sessionDB = new SessionDB(this);
         init();
     }
 
@@ -100,7 +106,13 @@ public class SaveDataAfter extends MyTimePicker {
         if(checkIsFieldsEmpty())
             Toast.makeText(this, "Fill in all fields and save again", Toast.LENGTH_SHORT).show();
         else{
-            //TODO save to SQLite
+            addSession(preferenceManager.getTableName(), preferenceManager.getAccountBalance(), timeOut, preferenceManager.getCountSeat(),
+                    preferenceManager.getCountTables(), Float.valueOf(accountBalance.getText().toString()), Integer.valueOf(playedHands.getText().toString()),
+                    Integer.valueOf(goingFlop.getText().toString()), Integer.valueOf(goingFlopWithoutBlinds.getText().toString()),
+                    Integer.valueOf(winning.getText().toString()), Integer.valueOf(winningWithoutShow.getText().toString()));
+            Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();
+            preferenceManager.ClearPref();
+            finish();
         }
     }
 
@@ -111,5 +123,26 @@ public class SaveDataAfter extends MyTimePicker {
     public void DeleteSession(View view) {
         new SharedPreferenceManager(this).ClearPref();
         finish();
+    }
+
+    private void addSession(String name, float accountBefore, int length, int maxPlayers, int countTables, float accountAfter,
+                            int playedHands, int goingFlop, int goingFlopWithoutBlinds, int winning, int winningWithoutShow){
+        SQLiteDatabase db = sessionDB.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(Session.SESSION_NAME, name);
+        cv.put(Session.ACCOUNT_BALANCE_BEFORE, accountBefore);
+        cv.put(Session.LENGTH_OF_THE_SESSION, length);
+        cv.put(Session.COUNT_MAX_PLAYERS, maxPlayers);
+        cv.put(Session.COUNT_TABLES, countTables);
+        cv.put(Session.ACCOUNT_BALANCE_AFTER, accountAfter);
+        cv.put(Session.PLAYED_HANDS, playedHands);
+        cv.put(Session.GOING_TO_FLOP, goingFlop);
+        cv.put(Session.GOING_TO_FLOP_WITHOUT_BLINDS, goingFlopWithoutBlinds);
+        cv.put(Session.WINNING, winning);
+        cv.put(Session.WINNING_WITHOUT_SHOW_HAND, winningWithoutShow);
+
+        long id = db.insert(Session.TABLE_NAME, null, cv);
+        Log.d("DataBaseWrite", "Number row of the table: " + id);
     }
 }
