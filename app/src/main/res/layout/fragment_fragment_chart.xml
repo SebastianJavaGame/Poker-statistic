@@ -4,9 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.sebastian.scislak.pokerstatistics.Activities.FragmentChart">
 
-    <TextView
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Chart of the sessions" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

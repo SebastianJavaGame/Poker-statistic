@@ -10,6 +10,9 @@ import android.widget.Toast;
 import com.sebastian.scislak.pokerstatistics.R;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainMenu extends AppCompatActivity {
 
     @Override

@@ -114,12 +114,13 @@ public class FragmentList extends Fragment {
 
         SQLiteDatabase db = sessionDB.getReadableDatabase();
 
-        Cursor cursor = db.query(Session.TABLE_NAME, new String[]{Session.SESSION_NAME, Session.ACCOUNT_BALANCE_BEFORE, Session.LENGTH_OF_THE_SESSION,
+        Cursor cursor = db.query(Session.TABLE_NAME, new String[]{Session.DATA, Session.SESSION_NAME, Session.ACCOUNT_BALANCE_BEFORE, Session.LENGTH_OF_THE_SESSION,
                             Session.COUNT_MAX_PLAYERS, Session.COUNT_TABLES, Session.ACCOUNT_BALANCE_AFTER, Session.PLAYED_HANDS, Session.GOING_TO_FLOP,
                             Session.GOING_TO_FLOP_WITHOUT_BLINDS, Session.WINNING, Session.WINNING_WITHOUT_SHOW_HAND}, null, null,null, null, null);
 
         while (cursor.moveToNext()){
             id++;
+            String date = cursor.getString(cursor.getColumnIndex(Session.DATA));
             String name = cursor.getString(cursor.getColumnIndex(Session.SESSION_NAME));
             String accountBefore = cursor.getString(cursor.getColumnIndex(Session.ACCOUNT_BALANCE_BEFORE));
             String length = cursor.getString(cursor.getColumnIndex(Session.LENGTH_OF_THE_SESSION));
@@ -135,11 +136,12 @@ public class FragmentList extends Fragment {
             float profit = Float.valueOf(accountAfter) - Float.valueOf(accountBefore);
             float averageProfit = profit / Integer.valueOf(tables);
 
-            sessionItemList.add(new SessionItem(id, name, profit, averageProfit, Integer.valueOf(tables), Integer.valueOf(maxSeat),
+            sessionItemList.add(new SessionItem(id, date, name, profit, averageProfit, Integer.valueOf(tables), Integer.valueOf(maxSeat),
                     Integer.valueOf(length), Integer.valueOf(hands), Integer.valueOf(goingToFlop),Integer.valueOf(withoutBlinds),
                     Integer.valueOf(winning),Integer.valueOf(withoutShow)));
 
-            //Log.d(TAG, id + " " + name + " " + accountBefore +" " + length +" " + maxSeat +" " + tables + " " + accountAfter + " " + hands + " " + goingToFlop + " " + withoutBlinds + " " + winning + " " + withoutShow);
+            //Log.d(TAG, id + " " + date + " " + name + " " + accountBefore +" " + length +" " + maxSeat +" " + tables + " " + accountAfter + " " + hands + " " + goingToFlop + " " + withoutBlinds + " " + winning + " " + withoutShow);
         }
+        cursor.close();
     }
 }

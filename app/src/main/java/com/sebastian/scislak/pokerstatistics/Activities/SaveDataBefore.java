@@ -9,6 +9,8 @@ import com.sebastian.scislak.pokerstatistics.R;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.MyTimePicker;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
+import java.util.Locale;
+
 /**
  * Created by User on 2018-01-21.
  */
@@ -17,7 +19,6 @@ public class SaveDataBefore extends MyTimePicker{
     private float accountBalance;
     private int seatAtTheTable;
     private int countTables;
-    private String sessionName;
 
     private EditText accountBalanceEdit;
     private EditText tableNumber;
@@ -29,7 +30,6 @@ public class SaveDataBefore extends MyTimePicker{
         setContentView(R.layout.activity_save_data_before);
         countTables = 1;
         seatAtTheTable = 9;
-        sessionName = "Session";
         accountBalance = 50.00f;
         init();
     }
@@ -45,8 +45,8 @@ public class SaveDataBefore extends MyTimePicker{
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !accountBalanceEdit.getText().toString().equals("")) {
                     accountBalance = Float.valueOf(accountBalanceEdit.getText().toString());
-                    String aroundNumber = String.format("%, .2f", accountBalance);
-                    accountBalanceEdit.setText(aroundNumber + "$");
+                    String aroundNumber = String.format(Locale.getDefault(), "%, .2f", accountBalance);
+                    accountBalanceEdit.setText(String.valueOf(aroundNumber + "$"));
                 }else
                     accountBalanceEdit.setText("");
             }
@@ -56,15 +56,6 @@ public class SaveDataBefore extends MyTimePicker{
             @Override
             public void onClick(View view) {
                 SaveDataBefore.super.showDialog(0);
-            }
-        });
-
-        tableNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocus) {
-                if(!hasFocus){
-                    sessionName = tableNumber.getText().toString();
-                }
             }
         });
 
@@ -107,11 +98,10 @@ public class SaveDataBefore extends MyTimePicker{
 
     public void PreSaving(View view) {
         if(!checkToFieldsIsEmpty()) {
-            int lengthName = sessionName.toString().length();
-            if(lengthName < 3 || lengthName > 8)
+            if(tableNumber.getText().length() < 3 || tableNumber.getText().length() > 8)
                 Toast.makeText(this, "Name or ID tournament is too short. Min 3 chars and Max 8 char", Toast.LENGTH_LONG).show();
             else {
-                new SharedPreferenceManager(SaveDataBefore.this).AddTable(sessionName, accountBalance, super.getCountMinutes(), seatAtTheTable, countTables);
+                new SharedPreferenceManager(SaveDataBefore.this).AddTable(tableNumber.getText().toString(), accountBalance, super.getCountMinutes(), seatAtTheTable, countTables);
                 Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();
             }
         }

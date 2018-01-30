@@ -21,7 +21,7 @@
     <string name="activity_save_data_option_2">The maximum number of players at the table</string>
     <string name="activity_save_data_option_3">Count tables in the session</string>
 
-    <string name="activity_save_data_default_0">MySession</string>
+    <string name="activity_save_data_default_0">Session</string>
     <string name="activity_save_data_default_1">50.00$</string>
     <string name="activity_save_data_default_2">hh:mm</string>
     <string name="activity_save_data_default_3">1</string>

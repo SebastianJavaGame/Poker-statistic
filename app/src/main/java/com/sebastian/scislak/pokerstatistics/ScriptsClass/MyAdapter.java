@@ -34,6 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         SessionItem session = itemList.get(position);
 
+        holder.date_item.setText(session.getDate());
         holder.id_item.setText(String.valueOf(session.getId()));
         holder.name_item.setText(session.getName());
         holder.profit.setText("Profit: " + String.format("%, .2f", session.getProfit()) +"$");
@@ -55,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView date_item;
         public TextView id_item;
         public TextView name_item;
         public TextView profit;
@@ -71,6 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public ViewHolder(View itemView) {
             super(itemView);
 
+            date_item = itemView.findViewById(R.id.date_item);
             id_item = itemView.findViewById(R.id.id_item);
             name_item = itemView.findViewById(R.id.name_item);
             profit = itemView.findViewById(R.id.profit_item);

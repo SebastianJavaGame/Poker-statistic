@@ -15,6 +15,9 @@ import com.sebastian.scislak.pokerstatistics.ScriptsClass.Session;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SessionDB;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * Created by User on 2018-01-26.
  */
@@ -61,7 +64,8 @@ public class SaveDataAfter extends MyTimePicker {
 
         preferenceManager = new SharedPreferenceManager(this);
         beforeSessionName.setText(preferenceManager.getTableName());
-        beforeAccountBalance.setText(String.valueOf(preferenceManager.getAccountBalance()));
+        String accountBalanceFormat = String.format(Locale.getDefault(), "%, .2f", preferenceManager.getAccountBalance());
+        beforeAccountBalance.setText(String.valueOf(accountBalanceFormat + "$"));
         beforeCountTables.setText(String.valueOf(preferenceManager.getCountTables()));
         beforeMaxPlayer.setText(String.valueOf(preferenceManager.getCountSeat()));
 
@@ -69,9 +73,9 @@ public class SaveDataAfter extends MyTimePicker {
         int minutes = preferenceManager.getTimeSession() % 60;
 
         if(minutes < 10)
-            beforeTime.setText(hour + ":0" + minutes);
+            beforeTime.setText(String.valueOf(hour + ":0" + minutes));
         else
-            beforeTime.setText(hour + ":" + minutes);
+            beforeTime.setText(String.valueOf(hour + ":" + minutes));
 
         timeEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +103,8 @@ public class SaveDataAfter extends MyTimePicker {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus && !accountBalance.getText().toString().equals("")) {
                     accountBalanceValue = Float.valueOf(accountBalance.getText().toString());
-                    String aroundNumber = String.format("%, .2f", accountBalanceValue);
-                    accountBalance.setText(aroundNumber + "$");
+                    String aroundNumber = String.format(Locale.getDefault(), "%, .2f", accountBalanceValue);
+                    accountBalance.setText(String.valueOf(aroundNumber + "$"));
                 }else
                     accountBalance.setText("");
             }
@@ -119,7 +123,8 @@ public class SaveDataAfter extends MyTimePicker {
         if(checkIsFieldsEmpty())
             Toast.makeText(this, "Fill in all fields and save again", Toast.LENGTH_SHORT).show();
         else{
-            addSession(preferenceManager.getTableName(), preferenceManager.getAccountBalance(), timeOut, preferenceManager.getCountSeat(),
+            String date = getActualDate();
+            addSession(date, preferenceManager.getTableName(), preferenceManager.getAccountBalance(), timeOut, preferenceManager.getCountSeat(),
                     preferenceManager.getCountTables(), accountBalanceValue, Integer.valueOf(playedHands.getText().toString()),
                     Integer.valueOf(goingFlop.getText().toString()), Integer.valueOf(goingFlopWithoutBlinds.getText().toString()),
                     Integer.valueOf(winning.getText().toString()), Integer.valueOf(winningWithoutShow.getText().toString()));
@@ -138,11 +143,12 @@ public class SaveDataAfter extends MyTimePicker {
         finish();
     }
 
-    private void addSession(String name, float accountBefore, int length, int maxPlayers, int countTables, float accountAfter,
+    private void addSession(String date, String name, float accountBefore, int length, int maxPlayers, int countTables, float accountAfter,
                             int playedHands, int goingFlop, int goingFlopWithoutBlinds, int winning, int winningWithoutShow){
         SQLiteDatabase db = sessionDB.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
+        cv.put(Session.DATA, date);
         cv.put(Session.SESSION_NAME, name);
         cv.put(Session.ACCOUNT_BALANCE_BEFORE, accountBefore);
         cv.put(Session.LENGTH_OF_THE_SESSION, length);
@@ -157,5 +163,12 @@ public class SaveDataAfter extends MyTimePicker {
 
         long id = db.insert(Session.TABLE_NAME, null, cv);
         Log.d("DataBaseWrite", "Number row of the table: " + id);
+    }
+
+    private String getActualDate(){
+        String dateDay = String.format("%1$td", new Date());
+        String dateMonth = String.format("%1$tm", new Date());
+
+        return String.valueOf(dateDay + "." + dateMonth);
     }
 }

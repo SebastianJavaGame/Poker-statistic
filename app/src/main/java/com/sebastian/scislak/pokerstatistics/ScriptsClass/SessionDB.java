@@ -9,24 +9,25 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class SessionDB extends SQLiteOpenHelper {
-    public static final String DB_NAME = "sessions6.db";
+    public static final String DB_NAME = "sessions9.db";
     public static final int DB_VERSION = 1;
 
     public static final String CREATE_TABLE_SESSION =
             "CREATE TABLE " + Session.TABLE_NAME + " ("
-            + Session._ID + " INTEGER PRIMARY KEY,"
-            + Session.SESSION_NAME + " TEXT,"
-            + Session.ACCOUNT_BALANCE_BEFORE + " REAL,"
-            + Session.LENGTH_OF_THE_SESSION + " TEXT,"
-            + Session.COUNT_MAX_PLAYERS + " INTEGER,"
-            + Session.COUNT_TABLES + " INTEGER,"
-            + Session.ACCOUNT_BALANCE_AFTER + " REAL,"
-            + Session.PLAYED_HANDS + " INTEGER,"
-            + Session.GOING_TO_FLOP + " INTEGER,"
-            + Session.GOING_TO_FLOP_WITHOUT_BLINDS + " INTEGER,"
-            + Session.WINNING + " INTEGER,"
-            + Session.WINNING_WITHOUT_SHOW_HAND + " INTEGER"
-            + ")";
+                    + Session._ID + " INTEGER PRIMARY KEY,"
+                    + Session.DATA + " TEXT,"
+                    + Session.SESSION_NAME + " TEXT,"
+                    + Session.ACCOUNT_BALANCE_BEFORE + " REAL,"
+                    + Session.LENGTH_OF_THE_SESSION + " TEXT,"
+                    + Session.COUNT_MAX_PLAYERS + " INTEGER,"
+                    + Session.COUNT_TABLES + " INTEGER,"
+                    + Session.ACCOUNT_BALANCE_AFTER + " REAL,"
+                    + Session.PLAYED_HANDS + " INTEGER,"
+                    + Session.GOING_TO_FLOP + " INTEGER,"
+                    + Session.GOING_TO_FLOP_WITHOUT_BLINDS + " INTEGER,"
+                    + Session.WINNING + " INTEGER,"
+                    + Session.WINNING_WITHOUT_SHOW_HAND + " INTEGER"
+                    + ")";
 
     public static final String DROP_TABLE_SESSION = "DROP TABLE IF EXISTS " + Session.TABLE_NAME;
 
