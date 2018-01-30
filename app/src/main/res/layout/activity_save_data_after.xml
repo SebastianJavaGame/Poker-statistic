@@ -135,8 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="hh:mm"
-                android:paddingTop="5dp"
-                android:inputType="datetime"/>
+                android:paddingTop="5dp" />
 
             <TextView
                 android:layout_width="match_parent"

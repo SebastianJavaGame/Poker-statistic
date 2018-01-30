@@ -29,7 +29,7 @@ public class SaveDataBefore extends MyTimePicker{
         setContentView(R.layout.activity_save_data_before);
         countTables = 1;
         seatAtTheTable = 9;
-        sessionName = "MySession";
+        sessionName = "Session";
         accountBalance = 50.00f;
         init();
     }
@@ -107,8 +107,9 @@ public class SaveDataBefore extends MyTimePicker{
 
     public void PreSaving(View view) {
         if(!checkToFieldsIsEmpty()) {
-            if(sessionName.toString().length() < 5)
-                Toast.makeText(this, "Name or ID tournament is too short. Min 5 chars", Toast.LENGTH_LONG).show();
+            int lengthName = sessionName.toString().length();
+            if(lengthName < 3 || lengthName > 8)
+                Toast.makeText(this, "Name or ID tournament is too short. Min 3 chars and Max 8 char", Toast.LENGTH_LONG).show();
             else {
                 new SharedPreferenceManager(SaveDataBefore.this).AddTable(sessionName, accountBalance, super.getCountMinutes(), seatAtTheTable, countTables);
                 Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();

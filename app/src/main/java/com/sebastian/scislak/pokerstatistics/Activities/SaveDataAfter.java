@@ -32,6 +32,7 @@ public class SaveDataAfter extends MyTimePicker {
 
     private int time;
     private int timeOut;
+    private float accountBalanceValue;
 
     private boolean isClicked;
 
@@ -92,6 +93,18 @@ public class SaveDataAfter extends MyTimePicker {
                 }
             }
         });
+
+        accountBalance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus && !accountBalance.getText().toString().equals("")) {
+                    accountBalanceValue = Float.valueOf(accountBalance.getText().toString());
+                    String aroundNumber = String.format("%, .2f", accountBalanceValue);
+                    accountBalance.setText(aroundNumber + "$");
+                }else
+                    accountBalance.setText("");
+            }
+        });
     }
 
     private boolean checkIsFieldsEmpty(){
@@ -107,7 +120,7 @@ public class SaveDataAfter extends MyTimePicker {
             Toast.makeText(this, "Fill in all fields and save again", Toast.LENGTH_SHORT).show();
         else{
             addSession(preferenceManager.getTableName(), preferenceManager.getAccountBalance(), timeOut, preferenceManager.getCountSeat(),
-                    preferenceManager.getCountTables(), Float.valueOf(accountBalance.getText().toString()), Integer.valueOf(playedHands.getText().toString()),
+                    preferenceManager.getCountTables(), accountBalanceValue, Integer.valueOf(playedHands.getText().toString()),
                     Integer.valueOf(goingFlop.getText().toString()), Integer.valueOf(goingFlopWithoutBlinds.getText().toString()),
                     Integer.valueOf(winning.getText().toString()), Integer.valueOf(winningWithoutShow.getText().toString()));
             Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();

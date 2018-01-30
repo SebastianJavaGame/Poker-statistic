@@ -75,8 +75,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
                 android:layout_gravity="center"
-                android:text="@string/activity_save_data_default_2"
-                android:inputType="datetime"/>
+                android:text="@string/activity_save_data_default_2" />
 
             <TextView
                 android:layout_width="match_parent"
