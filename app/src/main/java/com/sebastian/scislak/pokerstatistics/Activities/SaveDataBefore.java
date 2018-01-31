@@ -18,7 +18,6 @@ import java.util.Locale;
 public class SaveDataBefore extends MyTimePicker{
     private float accountBalance;
     private int seatAtTheTable;
-    private int countTables;
 
     private EditText accountBalanceEdit;
     private EditText tableNumber;
@@ -28,7 +27,6 @@ public class SaveDataBefore extends MyTimePicker{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_save_data_before);
-        countTables = 1;
         seatAtTheTable = 9;
         accountBalance = 50.00f;
         init();
@@ -58,15 +56,6 @@ public class SaveDataBefore extends MyTimePicker{
                 SaveDataBefore.super.showDialog(0);
             }
         });
-
-        countTablesEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean hasFocused) {
-                if(!hasFocused){
-                    countTables = Integer.decode(countTablesEdit.getText().toString());
-                }
-            }
-        });
     }
 
     public void CountPlayers(View view) {
@@ -86,7 +75,7 @@ public class SaveDataBefore extends MyTimePicker{
     }
 
     public boolean checkToFieldsIsEmpty(){
-        if(accountBalanceEdit.getText().equals("") || timeEdit.getText().equals("") || countTables < 1)
+        if(accountBalanceEdit.getText().toString().equals("") || timeEdit.getText().toString().equals("") || Integer.valueOf(countTablesEdit.getText().toString()) < 1 || !isClicked)
             return true;
         else
             return false;
@@ -101,10 +90,14 @@ public class SaveDataBefore extends MyTimePicker{
             if(tableNumber.getText().length() < 3 || tableNumber.getText().length() > 7)
                 Toast.makeText(this, "Name or ID tournament is too short. Min 3 chars and Max 7 char", Toast.LENGTH_LONG).show();
             else {
-                new SharedPreferenceManager(SaveDataBefore.this).AddTable(tableNumber.getText().toString(), accountBalance, super.getCountMinutes(), seatAtTheTable, countTables);
+                new SharedPreferenceManager(SaveDataBefore.this).AddTable(tableNumber.getText().toString(), accountBalance, super.getCountMinutes(), seatAtTheTable, Integer.valueOf(countTablesEdit.getText().toString()));
                 Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
+    }
+
+    @Override
+    protected void CalculateTime() {
     }
 }

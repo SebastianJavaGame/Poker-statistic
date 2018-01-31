@@ -37,8 +37,6 @@ public class SaveDataAfter extends MyTimePicker {
     private int timeOut;
     private float accountBalanceValue;
 
-    private boolean isClicked;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,21 +82,6 @@ public class SaveDataAfter extends MyTimePicker {
             }
         });
 
-        timeEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if(!b){
-                    Log.d("CLICK", "click");
-                    isClicked = true;
-                    time = SaveDataAfter.super.getHours() * 60 + SaveDataAfter.super.getMinute();
-                    if(preferenceManager.getTimeSession() < time)
-                        timeOut = time - preferenceManager.getTimeSession();
-                    else
-                        timeOut = preferenceManager.getTimeSession() - time;
-                }
-            }
-        });
-
         accountBalance.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -139,14 +122,20 @@ public class SaveDataAfter extends MyTimePicker {
     private float getAccountValue(String text) {
         String charDollar = text.substring(text.length() -1,text.length());
 
-        if(charDollar.equals("$"))
-            return Float.valueOf(text.substring(0, text.length() -1));
+        if(charDollar.equals("$")) {
+            String changed = changeDote(text.substring(0, text.length() - 1));
+            return Float.valueOf(changed);
+        }
         else {
             String aroundNumber = String.format(Locale.getDefault(), "%, .2f", Float.valueOf(text));
-            String cent = aroundNumber.substring(aroundNumber.length() -2, aroundNumber.length());
-            String dollar = aroundNumber.substring(0, aroundNumber.length() -3);
-            return Float.valueOf(dollar + "." + cent);
+            return Float.valueOf(changeDote(aroundNumber));
         }
+    }
+
+    private String changeDote(String text){
+        String cent = text.substring(text.length() -2, text.length());
+        String dollar = text.substring(0, text.length() -3);
+        return dollar + "." + cent;
     }
 
     public void SavingInfo(View view) {
@@ -185,5 +174,14 @@ public class SaveDataAfter extends MyTimePicker {
         String dateMonth = String.format("%1$tm", new Date());
 
         return String.valueOf(dateDay + "." + dateMonth);
+    }
+
+    @Override
+    protected void CalculateTime() {
+        time = SaveDataAfter.super.getHours() * 60 + SaveDataAfter.super.getMinute();
+        if(preferenceManager.getTimeSession() < time)
+            timeOut = time - preferenceManager.getTimeSession();
+        else
+            timeOut = preferenceManager.getTimeSession() - time;
     }
 }

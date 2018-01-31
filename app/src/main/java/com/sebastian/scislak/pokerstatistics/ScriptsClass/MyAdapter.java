@@ -86,7 +86,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             tables = itemView.findViewById(R.id.tables_item);
             maxPlayer = itemView.findViewById(R.id.max_player_item);
             lengthSession = itemView.findViewById(R.id.length_item);
-            playedHands = itemView.findViewById(R.id.max_player_item);
+            playedHands = itemView.findViewById(R.id.hands_item);
             goingToFlop = itemView.findViewById(R.id.going_to_flop_item);
             goingToFlopWithoutBlinds = itemView.findViewById(R.id.going_to_flop_without_blinds_item);
             winning = itemView.findViewById(R.id.winning_item);

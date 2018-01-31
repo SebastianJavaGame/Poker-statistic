@@ -2,6 +2,7 @@ package com.sebastian.scislak.pokerstatistics.ScriptsClass;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -17,7 +18,7 @@ public class SharedPreferenceManager{
     public static final String ACCOUNT_NAME = "ACCOUNT";
     public static final String TIME_NAME = "TIME";
     public static final String SEAT_NAME = "SEAT";
-    public static final String TABLES_NAME = "SEAT";
+    public static final String TABLES_NAME = "TABLES";
     private static int MAX_COUNT_OPENED_TABLES = 10;
 
     private static final int ITERATOR_ID = 0;
@@ -60,7 +61,7 @@ public class SharedPreferenceManager{
     }
 
     public int getCountSeat(){
-        return  mainPref.getInt(ITERATOR_ID + SEAT_NAME, 9);
+        return mainPref.getInt(ITERATOR_ID + SEAT_NAME, 9);
     }
 
     public int getCountTables(){

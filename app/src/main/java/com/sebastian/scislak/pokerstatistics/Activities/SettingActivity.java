@@ -48,7 +48,10 @@ public class SettingActivity extends AppCompatActivity {
             delete = true;
             Toast.makeText(this, "Click two time and delete database forever",Toast.LENGTH_LONG).show();
         }
-        else
+        else {
             this.deleteDatabase(SessionDB.DB_NAME);
+            Toast.makeText(this, "Deleted",Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 }
