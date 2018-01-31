@@ -98,11 +98,12 @@ public class SaveDataBefore extends MyTimePicker{
 
     public void PreSaving(View view) {
         if(!checkToFieldsIsEmpty()) {
-            if(tableNumber.getText().length() < 3 || tableNumber.getText().length() > 8)
-                Toast.makeText(this, "Name or ID tournament is too short. Min 3 chars and Max 8 char", Toast.LENGTH_LONG).show();
+            if(tableNumber.getText().length() < 3 || tableNumber.getText().length() > 7)
+                Toast.makeText(this, "Name or ID tournament is too short. Min 3 chars and Max 7 char", Toast.LENGTH_LONG).show();
             else {
                 new SharedPreferenceManager(SaveDataBefore.this).AddTable(tableNumber.getText().toString(), accountBalance, super.getCountMinutes(), seatAtTheTable, countTables);
                 Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }
     }

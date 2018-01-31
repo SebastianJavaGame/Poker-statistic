@@ -88,6 +88,7 @@ public class SaveDataAfter extends MyTimePicker {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(!b){
+                    Log.d("CLICK", "click");
                     isClicked = true;
                     time = SaveDataAfter.super.getHours() * 60 + SaveDataAfter.super.getMinute();
                     if(preferenceManager.getTimeSession() < time)
@@ -112,8 +113,8 @@ public class SaveDataAfter extends MyTimePicker {
     }
 
     private boolean checkIsFieldsEmpty(){
-        if(!isClicked || accountBalance.getText().equals("") || playedHands.getText().equals("") || goingFlop.getText().equals("")
-                || goingFlopWithoutBlinds.getText().equals("") || winning.getText().equals("") || winningWithoutShow.getText().equals(""))
+        if(!isClicked || accountBalance.getText().toString().equals("") || playedHands.getText().toString().equals("") || goingFlop.getText().toString().equals("")
+                || goingFlopWithoutBlinds.getText().toString().equals("") || winning.getText().toString().equals("") || winningWithoutShow.getText().toString().equals(""))
             return true;
         else
             return false;
@@ -124,6 +125,7 @@ public class SaveDataAfter extends MyTimePicker {
             Toast.makeText(this, "Fill in all fields and save again", Toast.LENGTH_SHORT).show();
         else{
             String date = getActualDate();
+            accountBalanceValue = getAccountValue(accountBalance.getText().toString());
             addSession(date, preferenceManager.getTableName(), preferenceManager.getAccountBalance(), timeOut, preferenceManager.getCountSeat(),
                     preferenceManager.getCountTables(), accountBalanceValue, Integer.valueOf(playedHands.getText().toString()),
                     Integer.valueOf(goingFlop.getText().toString()), Integer.valueOf(goingFlopWithoutBlinds.getText().toString()),
@@ -131,6 +133,19 @@ public class SaveDataAfter extends MyTimePicker {
             Toast.makeText(this, "Saving complete", Toast.LENGTH_SHORT).show();
             preferenceManager.ClearPref();
             finish();
+        }
+    }
+
+    private float getAccountValue(String text) {
+        String charDollar = text.substring(text.length() -1,text.length());
+
+        if(charDollar.equals("$"))
+            return Float.valueOf(text.substring(0, text.length() -1));
+        else {
+            String aroundNumber = String.format(Locale.getDefault(), "%, .2f", Float.valueOf(text));
+            String cent = aroundNumber.substring(aroundNumber.length() -2, aroundNumber.length());
+            String dollar = aroundNumber.substring(0, aroundNumber.length() -3);
+            return Float.valueOf(dollar + "." + cent);
         }
     }
 

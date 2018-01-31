@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.sebastian.scislak.pokerstatistics.R;
+import com.sebastian.scislak.pokerstatistics.ScriptsClass.SessionDB;
 import com.sebastian.scislak.pokerstatistics.ScriptsClass.SharedPreferenceManager;
 
 import java.util.Calendar;
