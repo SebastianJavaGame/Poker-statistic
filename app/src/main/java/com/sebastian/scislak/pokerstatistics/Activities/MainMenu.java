@@ -41,4 +41,8 @@ public class MainMenu extends AppCompatActivity {
     public void Exit(View view) {
         System.exit(0);
     }
+
+    public void Setting(View view) {
+        startActivity(new Intent(this, SettingActivity.class));
+    }
 }

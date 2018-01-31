@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class SessionDB extends SQLiteOpenHelper {
-    public static final String DB_NAME = "sessions9.db";
+    public static final String DB_NAME = "sessions.db";
     public static final int DB_VERSION = 1;
 
     public static final String CREATE_TABLE_SESSION =

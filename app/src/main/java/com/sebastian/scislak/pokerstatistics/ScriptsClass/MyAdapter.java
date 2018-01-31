@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.sebastian.scislak.pokerstatistics.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -17,8 +18,10 @@ import java.util.List;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    public static final String[] MONTH = {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
     public static final String TAG = "MyAdapter";
     private List<SessionItem> itemList;
+    private SimpleDateFormat simpleDateFormat;
 
     public MyAdapter(List<SessionItem> itemList) {
         this.itemList = itemList;
@@ -34,7 +37,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         SessionItem session = itemList.get(position);
 
-        holder.date_item.setText(session.getDate());
+        String date = session.getDate();
+
+        holder.date_item.setText(date.substring(0, 2) + " " + MONTH[Integer.valueOf(date.substring(3, 5))]);
         holder.id_item.setText(String.valueOf(session.getId()));
         holder.name_item.setText(session.getName());
         holder.profit.setText("Profit: " + String.format("%, .2f", session.getProfit()) +"$");

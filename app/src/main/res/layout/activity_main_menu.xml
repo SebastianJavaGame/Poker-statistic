@@ -1,62 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sebastian.scislak.pokerstatistics.Activities.MainMenu"
-    android:orientation="vertical"
     android:background="@color/colorSeparator"
+    android:orientation="vertical"
     android:paddingLeft="18dp"
-    android:paddingRight="18dp">
+    android:paddingRight="18dp"
+    tools:context="com.sebastian.scislak.pokerstatistics.Activities.MainMenu">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="40dp"/>
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
-        android:layout_gravity="center"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="70dp"/>
+        android:layout_alignParentRight="true">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/menu_first_option"
-        android:onClick="OpenWriteStatistics"/>
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/info"
+            android:onClick="Setting"/>
+    </RelativeLayout>
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/menu_second_option"
-        android:onClick="OpenShowStatistics"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_launcher_background" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/menu_third_option"
-        android:onClick="OpenPokerTips"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="70dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="OpenWriteStatistics"
+            android:text="@string/menu_first_option" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/menu_fourth_option"
-        android:onClick="Exit"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
-</LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="OpenShowStatistics"
+            android:text="@string/menu_second_option" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="OpenPokerTips"
+            android:text="@string/menu_third_option" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="Exit"
+            android:text="@string/menu_fourth_option" />
+    </LinearLayout>
+</RelativeLayout>
