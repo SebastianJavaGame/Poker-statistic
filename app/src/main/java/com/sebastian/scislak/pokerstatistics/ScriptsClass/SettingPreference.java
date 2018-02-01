@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 public class SettingPreference {
     public static final String NAME = "SETTING_PREF";
     public static final String SCALING_GRAPH = "SCALING_GRAPH";
+    public static final String INIT_EVERY_SESSION = "INIT_EVERY_SESSION";
 
     private SharedPreferences preferences;
 
@@ -23,5 +24,13 @@ public class SettingPreference {
 
     public boolean getScalingGraph(){
         return preferences.getBoolean(SCALING_GRAPH, false);
+    }
+
+    public void setInitEverySession(boolean initEverySession){
+        preferences.edit().putBoolean(INIT_EVERY_SESSION, initEverySession).apply();
+    }
+
+    public boolean getInitEverySession(){
+        return preferences.getBoolean(INIT_EVERY_SESSION, false);
     }
 }

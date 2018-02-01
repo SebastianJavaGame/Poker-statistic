@@ -16,6 +16,7 @@ import com.sebastian.scislak.pokerstatistics.ScriptsClass.SettingPreference;
 
 public class SettingActivity extends AppCompatActivity {
     public CheckBox scalingGraph;
+    public CheckBox initEverySession;
 
     private SettingPreference setting;
 
@@ -30,13 +31,24 @@ public class SettingActivity extends AppCompatActivity {
         setting = new SettingPreference(this);
 
         scalingGraph = findViewById(R.id.scaling_graph_checkbox);
+        initEverySession = findViewById(R.id.init_every_session);
+
+        init();
+    }
+
+    private void init() {
         if(setting.getScalingGraph())
             scalingGraph.setChecked(true);
         else
             scalingGraph.setChecked(false);
+
+        if (setting.getInitEverySession())
+            initEverySession.setChecked(true);
+        else
+            initEverySession.setChecked(false);
     }
 
-    public void ClickCheckBox(View view) {
+    public void ScalingChart(View view) {
         if(scalingGraph.isChecked())
             setting.setScalingGraph(true);
         else
@@ -53,5 +65,12 @@ public class SettingActivity extends AppCompatActivity {
             Toast.makeText(this, "Deleted",Toast.LENGTH_LONG).show();
             finish();
         }
+    }
+
+    public void InitEverySession(View view) {
+        if(initEverySession.isChecked())
+            setting.setInitEverySession(true);
+        else
+            setting.setInitEverySession(false);
     }
 }

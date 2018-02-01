@@ -50,17 +50,22 @@ public class FragmentChart extends Fragment {
         else
             graphView.getViewport().setScalableY(false);
 
-        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
-            @Override
-            public String formatLabel(double value, boolean isValueX) {
-                if (isValueX) {
-                    return simpleDateFormat.format(new Date((long) value));
-                } else {
-                    return super.formatLabel(value, isValueX);
+        if(!setting.getInitEverySession()) {
+            graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if (isValueX) {
+                        return simpleDateFormat.format(new Date((long) value));
+                    } else {
+                        return super.formatLabel(value, isValueX);
+                    }
                 }
-            }
-        });
-        graphView.getGridLabelRenderer().setNumHorizontalLabels(4);
+            });
+
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(4);
+        }else{
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(8);
+        }
 
         graphView.addSeries(series);
 
@@ -73,9 +78,31 @@ public class FragmentChart extends Fragment {
         series = new LineGraphSeries<>();
         sessionDB = new SessionDB(getActivity());
         simpleDateFormat = new SimpleDateFormat("dd MMM");
+        
+        if (setting.getInitEverySession())
+            initSeriesSessionId();
+        else
+            initSeriesDate();
 
+    }
+
+    private void initSeriesSessionId() {
         SQLiteDatabase sqLiteDatabase = sessionDB.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query(Session.TABLE_NAME, new String[]{Session._ID, Session.ACCOUNT_BALANCE_AFTER}, null, null, null, null, null);
 
+        int countColumn = cursor.getCount();
+
+        while (cursor.moveToNext()){
+            double sessionId = Double.valueOf(cursor.getString(cursor.getColumnIndex(Session._ID)));
+            double after = (double) cursor.getFloat(cursor.getColumnIndex(Session.ACCOUNT_BALANCE_AFTER));
+
+            series.appendData(new DataPoint(sessionId, after), true, countColumn);
+        }
+        cursor.close();
+    }
+
+    private void initSeriesDate() {
+        SQLiteDatabase sqLiteDatabase = sessionDB.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.query(Session.TABLE_NAME, new String[]{Session.DATA, Session.ACCOUNT_BALANCE_AFTER}, null, null, null, null, null);
 
         int countColumn = cursor.getCount();
@@ -97,7 +124,7 @@ public class FragmentChart extends Fragment {
             double after = (double) cursor.getFloat(cursor.getColumnIndex(Session.ACCOUNT_BALANCE_AFTER));
 
             series.appendData(new DataPoint(date, after), true, countColumn);
-            Log.d("series", date + " " + after);
+            //Log.d("series", date + " " + after);
         }
         cursor.close();
     }
